@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SNS運用代行事業 短期フェーズ組織設計（6〜12ヶ月）</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap');
+    
+    body {
+      font-family: 'Noto Sans JP', sans-serif;
+      color: #333;
+      line-height: 1.6;
+      margin: 0;
+      padding: 20px;
+      background-color: #f8f9fa;
+    }
+    
+    .container {
+      max-width: 1000px;
+      margin: 0 auto;
+      background-color: white;
+      padding: 30px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      border-radius: 8px;
+    }
+    
+    header {
+      text-align: center;
+      margin-bottom: 30px;
+      padding-bottom: 20px;
+      border-bottom: 2px solid #2E578C;
+    }
+    
+    h1 {
+      color: #2E578C;
+      font-size: 28px;
+      margin-bottom: 10px;
+    }
+    
+    h2 {
+      color: #2E578C;
+      font-size: 22px;
+      margin-top: 30px;
+      margin-bottom: 15px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid #BF807A;
+    }
+    
+    h3 {
+      color: #592A2A;
+      font-size: 18px;
+      margin-top: 25px;
+      margin-bottom: 10px;
+    }
+    
+    .phase-title {
+      background-color: #2E578C;
+      color: white;
+      padding: 8px 15px;
+      border-radius: 4px;
+      display: inline-block;
+      margin-bottom: 10px;
+    }
+    
+    .business-overview, .organization-chart, .roles, .strategy-points {
+      margin-bottom: 30px;
+    }
+    
+    .role-card {
+      background-color: #f8f9fa;
+      border-left: 4px solid #2E578C;
+      padding: 15px;
+      margin-bottom: 15px;
+      border-radius: 4px;
+    }
+    
+    .role-title {
+      font-weight: bold;
+      color: #2E578C;
+      margin-bottom: 5px;
+      font-size: 16px;
+      display: flex;
+      justify-content: space-between;
+    }
+    
+    .role-subtitle {
+      color: #592A2A;
+      font-size: 14px;
+      margin-bottom: 10px;
+    }
+    
+    .role-details {
+      margin-top: 10px;
+    }
+    
+    .role-details p {
+      margin: 5px 0;
+    }
+    
+    .strategy-point {
+      background-color: #fff;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      padding: 15px;
+      margin-bottom: 15px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    }
+    
+    .strategy-title {
+      font-weight: bold;
+      color: #592A2A;
+      margin-bottom: 10px;
+    }
+    
+    ul {
+      padding-left: 20px;
+    }
+    
+    li {
+      margin-bottom: 8px;
+    }
+    
+    .badge {
+      background-color: #BF807A;
+      color: white;
+      padding: 3px 8px;
+      border-radius: 3px;
+      font-size: 12px;
+    }
+    
+    .chart-container {
+      margin: 20px 0;
+      text-align: center;
+    }
+    
+    .org-chart {
+      width: 100%;
+      max-width: 800px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    
+    .org-box {
+      border: 2px solid #2E578C;
+      border-radius: 8px;
+      padding: 10px;
+      margin: 10px;
+      background-color: white;
+      width: 200px;
+      position: relative;
+      text-align: center;
+    }
+    
+    .org-ceo {
+      background-color: rgba(46, 87, 140, 0.1);
+      border-color: #2E578C;
+    }
+    
+    .org-manager {
+      background-color: rgba(191, 128, 122, 0.1);
+      border-color: #BF807A;
+    }
+    
+    .org-staff {
+      background-color: rgba(255, 255, 255, 0.8);
+      border-color: #592A2A;
+    }
+    
+    .org-level {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin: 10px 0;
+      position: relative;
+    }
+    
+    .org-level::after {
+      content: '';
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      width: 2px;
+      height: 20px;
+      background: #2E578C;
+      transform: translateX(-50%);
+    }
+    
+    .org-level:last-child::after {
+      display: none;
+    }
+    
+    .personnel-count {
+      position: absolute;
+      top: -10px;
+      right: -10px;
+      background-color: #592A2A;
+      color: white;
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 12px;
+      font-weight: bold;
+    }
+    
+    .employment-type {
+      position: absolute;
+      bottom: -8px;
+      right: 10px;
+      background-color: #2E578C;
+      color: white;
+      border-radius: 4px;
+      padding: 2px 6px;
+      font-size: 10px;
+    }
+    
+    footer {
+      margin-top: 50px;
+      text-align: center;
+      font-size: 12px;
+      color: #666;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>SNS運用代行事業 組織設計プラン</h1>
+      <div class="phase-title">短期フェーズ（6〜12ヶ月）</div>
+    </header>
+    
+    <div class="business-overview">
+      <h2>事業概要</h2>
+      <ul>
+        <li>サービス: SNS運用代行（動画1本3万円、月8本で月額24万円／1社）</li>
+        <li>現在の契約社数: 約8社</li>
+        <li>粗利率: 80%</li>
+        <li>現状: 外注編集者4人（粗利の20%支払い）</li>
+        <li>現在の業務体制: 営業、企画、撮影、資料作成を経営者1人で担当</li>
+        <li>目標: 8ヶ月後に1500万円売上（月約187万円）</li>
+      </ul>
+    </div>
+    
+    <div class="organization-chart">
+      <h2>短期フェーズの組織図</h2>
+      
+      <div class="chart-container">
+        <div class="org-chart">
+          <div class="org-level">
+            <div class="org-box org-ceo">
+              <div class="personnel-count">1</div>
+              <div class="employment-type">社長</div>
+              <div class="role-title">代表（あなた）</div>
+              <div class="role-subtitle">CEO / マネージャー</div>
+            </div>
+          </div>
+          
+          <div class="org-level">
+            <div class="org-box org-manager">
+              <div class="personnel-count">1</div>
+              <div class="employment-type">業務委託</div>
+              <div class="role-title">営業責任者</div>
+              <div class="role-subtitle">Sales Manager</div>
+            </div>
+            
+            <div class="org-box org-manager">
+              <div class="personnel-count">1</div>
+              <div class="employment-type">業務委託</div>
+              <div class="role-title">企画責任者</div>
+              <div class="role-subtitle">Planning Director</div>
+            </div>
+            
+            <div class="org-box org-manager">
+              <div class="personnel-count">1</div>
+              <div class="employment-type">業務委託</div>
+              <div class="role-title">撮影ディレクター</div>
+              <div class="role-subtitle">Shooting Director</div>
+            </div>
+          </div>
+          
+          <div class="org-level">
+            <div class="org-box org-staff">
+              <div class="personnel-count">5</div>
+              <div class="employment-type">業務委託</div>
+              <div class="role-title">編集チーム</div>
+              <div class="role-subtitle">Editing Team</div>
+            </div>
+            
+            <div class="org-box org-staff">
+              <div class="personnel-count">1</div>
+              <div class="employment-type">副業/業務委託</div>
+              <div class="role-title">運用マネージャー</div>
+              <div class="role-subtitle">Operations Manager</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="roles">
+      <h2>役職と業務内容の詳細</h2>
+      
+      <div class="role-card">
+        <div class="role-title">
+          代表（あなた） <span class="badge">1名</span>
+        </div>
+        <div class="role-subtitle">CEO / マネージャー</div>
+        <div class="role-details">
+          <p><strong>業務内容:</strong> 全体統括、営業戦略立案、企画監修、重要顧客対応、新規事業開発</p>
+          <p><strong>採用形態:</strong> 経営者（社長）</p>
+        </div>
+      </div>
+      
+      <div class="role-card">
+        <div class="role-title">
+          営業責任者 <span class="badge">1名</span>
+        </div>
+        <div class="role-subtitle">Sales Manager</div>
+        <div class="role-details">
+          <p><strong>業務内容:</strong> 新規顧客開拓、商談/提案実施、顧客関係維持、契約管理</p>
+          <p><strong>採用形態:</strong> 業務委託（営業経験者で成果報酬型）</p>
+          <p><strong>採用方法:</strong> クラウドソーシング上級者、または異業種交流会での人脈</p>
+        </div>
+      </div>
+      
+      <div class="role-card">
+        <div class="role-title">
+          企画責任者 <span class="badge">1名</span>
+        </div>
+        <div class="role-subtitle">Planning Director</div>
+        <div class="role-details">
+          <p><strong>業務内容:</strong> コンテンツ企画立案、クライアント提案資料作成、コンテンツカレンダー管理</p>
+          <p><strong>採用形態:</strong> 業務委託（副業可）</p>
+          <p><strong>採用方法:</strong> SNSマーケティング経験者、広告代理店経験者</p>
+        </div>
+      </div>
+      
+      <div class="role-card">
+        <div class="role-title">
+          撮影ディレクター <span class="badge">1名</span>
+        </div>
+        <div class="role-subtitle">Shooting Director</div>
+        <div class="role-details">
+          <p><strong>業務内容:</strong> 撮影計画立案、機材管理、ロケーション選定、撮影実行</p>
+          <p><strong>採用形態:</strong> 業務委託（フリーランス）</p>
+          <p><strong>採用方法:</strong> クリエイターコミュニティ、撮影スタジオとの提携</p>
+        </div>
+      </div>
+      
+      <div class="role-card">
+        <div class="role-title">
+          編集チーム <span class="badge">5名</span>
+        </div>
+        <div class="role-subtitle">Editing Team</div>
+        <div class="role-details">
+          <p><strong>業務内容:</strong> 動画編集、サムネイル作成、テロップ/効果音、クオリティチェック</p>
+          <p><strong>採用形態:</strong> 業務委託（案件ごと報酬）</p>
+          <p><strong>採用方法:</strong> 現編集者からの紹介、クラウドソーシング</p>
+        </div>
+      </div>
+      
+      <div class="role-card">
+        <div class="role-title">
+          運用マネージャー <span class="badge">1名</span>
+        </div>
+        <div class="role-subtitle">Operations Manager</div>
+        <div class="role-details">
+          <p><strong>業務内容:</strong> 投稿スケジュール管理、パフォーマンス分析、顧客レポート作成</p>
+          <p><strong>採用形態:</strong> 副業/業務委託</p>
+          <p><strong>採用方法:</strong> SNSマーケティング経験者、データ分析スキル保有者</p>
+        </div>
+      </div>
+    </div>
+    
+    <div class="strategy-points">
+      <h2>短期フェーズで重視すべき組織設計のポイント</h2>
+      
+      <div class="strategy-point">
+        <div class="strategy-title">1. あなたの役割転換</div>
+        <ul>
+          <li>「プレイヤー」から「マネージャー」への転換を意識</li>
+          <li>新規採用人材への業務委託を通じてマネジメントスキルを磨く</li>
+          <li>個別業務から徐々に手を引き、全体監督に集中する時間を作る</li>
+        </ul>
+      </div>
+      
+      <div class="strategy-point">
+        <div class="strategy-title">2. 標準化とマニュアル整備</div>
+        <ul>
+          <li>各工程の標準作業手順書（SOP）を整備</li>
+          <li>クオリティ基準の明文化</li>
+          <li>業務フローのテンプレート化（提案資料、企画書、レポート等）</li>
+        </ul>
+      </div>
+      
+      <div class="strategy-point">
+        <div class="strategy-title">3. 人材の柔軟な確保</div>
+        <ul>
+          <li>固定費を抑えるため、まずは業務委託/副業ベースでスタート</li>
+          <li>成果報酬型の契約で優秀な人材を惹きつける</li>
+          <li>少数精鋭のチーム構築を優先</li>
+        </ul>
+      </div>
+      
+      <div class="strategy-point">
+        <div class="strategy-title">4. 収益拡大に向けた体制</div>
+        <ul>
+          <li>営業専任者を確保し、あなたの苦手分野をカバー</li>
+          <li>月間契約数の拡大（8社→20社）を支える制作体制の整備</li>
+          <li>安定的な品質維持のための運用体制確立</li>
+        </ul>
+      </div>
+    </div>
+    
+    <footer>
+      <p>作成日: 2025年5月16日｜SNS運用代行事業 組織設計プラン - 短期フェーズ</p>
+    </footer>
+  </div>
+</body>
+</html>
